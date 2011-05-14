@@ -12,6 +12,6 @@ Script to publish new versions of an war application. it is summarized by the fo
 
 Usage:
 
-<pre>
+{code}
 groovy deploy.groovy -h to see the script usage
-</pre>
+{code}
