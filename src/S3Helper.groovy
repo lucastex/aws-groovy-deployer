@@ -7,7 +7,6 @@ import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.model.PutObjectRequest
 import com.amazonaws.services.s3.transfer.TransferManager
 import com.amazonaws.services.s3.model.CannedAccessControlList
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest
 import com.amazonaws.services.s3.transfer.TransferManagerConfiguration
 
 class S3Helper {
@@ -38,7 +37,7 @@ class S3Helper {
 
 		def transferManager = new TransferManager(credentials)
 		def tmConfiguration = new TransferManagerConfiguration()
-		tmConfiguration.setMinimumUploadPartSize(fileSize) 
+		tmConfiguration.setMinimumUploadPartSize(fileSize + 1024) 
 		transferManager.setConfiguration(tmConfiguration) 
 
 		war.withInputStream { warInputStream -> 

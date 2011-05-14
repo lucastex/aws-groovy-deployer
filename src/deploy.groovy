@@ -26,13 +26,13 @@ def credentials = cliArguments.credentials()
 ConsoleUtil.info "uploading war file to S3"
 
 def s3Helper = new S3Helper(credentials)
-def signedWarURL = s3Helper.upload(cliArguments.war())
+def warURL = s3Helper.upload(cliArguments.war())
 
-ConsoleUtil.info "Signer URL for file is [${signedWarURL}]"
+ConsoleUtil.info "URL for file is [${warURL}]"
 
 ConsoleUtil.info "Connecting to EC2 to launch instances"
 def ec2Helper = new EC2Helper(credentials)
-def instanceIds = ec2Helper.runInstances(cliArguments.ec2Data(), signedWarURL)
+def instanceIds = ec2Helper.runInstances(cliArguments.ec2Data(), warURL)
 
 ConsoleUtil.info "Tagging instances"
 ec2Helper.tagInstances(instanceIds)
