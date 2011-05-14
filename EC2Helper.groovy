@@ -139,7 +139,7 @@ class EC2Helper {
 
 		lines << "#seta vars pro tomcat"
 		lines << "chmod 666 /etc/tomcat6/tomcat6.conf"
-		lines << "echo 'JAVA_OPTS=\"-server -Xms384m -Xmx384m -XX:PermSize=96m -XX:MaxPermSize=96m -Djava.awt.headless=true -XX:NewRatio=3 -XX:SurvivorRatio=6 -XX:+UseParallelGC -XX:+CMSClassUnloadingEnabled\"' >> /etc/tomcat6/startscript/tomcat6.conf"
+		lines << "echo 'JAVA_OPTS=\"-server -Xms384m -Xmx384m -XX:PermSize=96m -XX:MaxPermSize=96m -Djava.awt.headless=true -XX:NewRatio=3 -XX:SurvivorRatio=6 -XX:+UseParallelGC -XX:+CMSClassUnloadingEnabled\"' >> /etc/tomcat6/tomcat6.conf"
 		lines << "echo 'Setou vars para o tomcat' >> /root/startscript/init.log"
 
 		lines << "#inicia tomcat"
