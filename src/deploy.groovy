@@ -60,7 +60,6 @@ if (elb) {
 
 s3Helper.deleteWarAndBucket()
 s3Helper.shutdown()
-System.exit 0
 
 def instanceDetails = ec2Helper.getInstanceDetails(instanceIds)
 ConsoleUtil.info "Done! Look at your new environment: "
@@ -71,3 +70,5 @@ if (elb) {
 instanceDetails.eachWithIndex { instance, idx ->	
 	ConsoleUtil.info "\tInstance ${idx+1} - [${instance.instanceId}] - Public DNS: ${instance.publicDnsName}"
 }
+
+System.exit 0
