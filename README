@@ -9,3 +9,9 @@ Script to publish new versions of an war application. it is summarized by the fo
 4) Attach the instances in your ELB in place of your old ones with the older version
 5) (if you want) remove old instances (handling the older version of your app) and terminate them
 6) Remove your war file from s3
+
+Usage:
+
+<pre>
+groovy deploy.groovy -h to see the script usage
+</pre>
