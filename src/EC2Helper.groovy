@@ -123,29 +123,29 @@ class EC2Helper {
 	
 		lines << "mkdir /root/startscript"
 		lines << "echo 'Iniciando script' >> /root/startscript/init.log"
-		
+		lines << ""
 		lines << "#atualiza yum"
 		lines << "yum -y update > /root/startscript/yum-update.log"
 		lines << "echo 'Atualizou YUM' >> /root/startscript/init.log"
-
+		lines << ""
 		lines << "#instala tomcat"
 		lines << "yum -y install tomcat6  > /root/startscript/tomcat-install.log"
 		lines << "echo 'Instalou tomcat' >> /root/startscript/init.log"
-		
+		lines << ""	
 		lines << "#baixa arquivo da aplicacao"
 		lines << "cd /usr/share/tomcat6/webapps/"
 		lines << "wget ${warUrl} -O ROOT.war"
 		lines << "echo 'Fez download da app' >> /root/startscript/init.log"
-
+		lines << ""
 		lines << "#seta vars pro tomcat"
 		lines << "chmod 666 /etc/tomcat6/tomcat6.conf"
 		lines << "echo 'JAVA_OPTS=\"-server -Xms384m -Xmx384m -XX:PermSize=96m -XX:MaxPermSize=96m -Djava.awt.headless=true -XX:NewRatio=3 -XX:SurvivorRatio=6 -XX:+UseParallelGC -XX:+CMSClassUnloadingEnabled\"' >> /etc/tomcat6/tomcat6.conf"
 		lines << "echo 'Setou vars para o tomcat' >> /root/startscript/init.log"
-
+		lines << ""	
 		lines << "#inicia tomcat"
 		lines << "/etc/init.d/tomcat6 start > /root/startscript/tomcat-start.log"
 		lines << "echo 'Startou tomcat' >> /root/startscript/init.log"
-
+		lines << ""
 		lines << "echo 'Finalizou script' >> /root/startscript/init.log"
 	
 		def scriptData = lines.join('\n').bytes.encodeBase64().toString()
