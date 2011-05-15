@@ -20,7 +20,7 @@ class DeployHelper {
 						def http = new HTTPBuilder(urlToCheck)
 						http.get( path : '/index.jsp', contentType : "text/plain") { resp, reader ->
 							if (resp.status == 200) {
-								ConsoleUtil.debug "Checking application in instance [${instance.instanceId}] - ${urlToCheck}/index.jsp - [STATUS OK]"
+								ConsoleUtil.info "Checking application in instance [${instance.instanceId}] - ${urlToCheck}/index.jsp - [STATUS OK]"
 								instanceIds.remove(instance.instanceId)
 							}
 						}
