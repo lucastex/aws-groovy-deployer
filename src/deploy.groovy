@@ -1,5 +1,6 @@
 @GrabResolver(name='central', root='http://repo1.maven.org/maven2')
 @GrabResolver(name='javanet', root='http://download.java.net/maven/2')
+@GrabResolver(name='codehaus', root='http://repository.codehaus.org/org/codehaus/groovy/')
 @Grab(group='com.amazonaws', module='aws-java-sdk', version='1.1.9')
 @Grab(group='commons-logging', module='commons-logging', version='1.1.1')
 @Grab(group='commons-httpclient', module='commons-httpclient', version='3.1')
@@ -7,6 +8,7 @@
 @Grab(group='org.codehaus.jackson', module='jackson-core-asl', version='1.4.3')
 @Grab(group='stax', module='stax', version='1.2.0')
 @Grab(group='stax', module='stax-api', version='1.0.1')
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.5.1' )
 
 import org.apache.commons.logging.LogFactory
 
@@ -36,6 +38,10 @@ def instanceIds = ec2Helper.runInstances(cliArguments.ec2Data(), warURL)
 
 ConsoleUtil.info "Tagging instances"
 ec2Helper.tagInstances(instanceIds)
+
+ConsoleUtil.info "Waiting to deploy application in all instances"
+def deployHelper = new DeployHelper()
+deployHelper.checkApplication(ec2Helper.getInstanceDetails(instanceIds))
 
 ConsoleUtil.info "Connecting to ELB console"
 def elbHelper = new ELBHelper(credentials)
