@@ -52,15 +52,18 @@ if (elb) {
 	ConsoleUtil.info "Attaching instances to ELB [${elb.name}]"
 	elbHelper.attachInstances(elb.name, instanceIds)
 	
-	ConsoleUtil.info "Would you like to remove old instances from ELB and terminate them?"
-	print 'choose [y/n]: '
-	def removeOldInstances = "y"
-	removeOldInstances = System.console().readLine()
-	
-	if (removeOldInstances == "y") {
-		ConsoleUtil.info "Removing old instances from ELB"
-		elbHelper.removeInstancesFromElb(elb.name, oldInstancesInElb)
-		ec2Helper.terminateInstances(oldInstancesInElb.collect { it.instanceId })
+	if (oldInstancesInElb.size() > 0) {
+		
+		ConsoleUtil.info "Would you like to remove old instances from ELB and terminate them?"
+		print 'choose [y/n]: '
+		def removeOldInstances = "y"
+		removeOldInstances = System.console().readLine()
+
+		if (removeOldInstances == "y") {
+			ConsoleUtil.info "Removing old instances from ELB"
+			elbHelper.removeInstancesFromElb(elb.name, oldInstancesInElb)
+			ec2Helper.terminateInstances(oldInstancesInElb.collect { it.instanceId })
+		}		
 	}
 }
 

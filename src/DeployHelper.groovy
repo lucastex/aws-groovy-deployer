@@ -16,12 +16,11 @@ class DeployHelper {
 					
 					try {
 						def urlToCheck = "http://${instance.publicDnsName}:8080"
-						ConsoleUtil.debug "Checking application in instance [${instance.instanceId}] - ${urlToCheck}/index.jsp"
-			
+									
 						def http = new HTTPBuilder(urlToCheck)
 						http.get( path : '/index.jsp', contentType : "text/plain") { resp, reader ->
 							if (resp.status == 200) {
-								ConsoleUtil.debug "\tStatus: [OK]"
+								ConsoleUtil.debug "Checking application in instance [${instance.instanceId}] - ${urlToCheck}/index.jsp - [STATUS OK]"
 								instanceIds.remove(instance.instanceId)
 							}
 						}
@@ -30,6 +29,8 @@ class DeployHelper {
 					}		
 				}
 			}
+		
+			Thread.sleep(3000)
 		}
 	}
 
