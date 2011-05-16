@@ -13,3 +13,10 @@ Script to publish new versions of an war application. it is summarized by the fo
 Usage:
 
 	groovy deploy.groovy -h to see the script usage
+	
+Dependencies: 
+
+The script depends on several third party libraries that will be downloaded using grape. 
+So, the first time you run the script, you'll download all of them, causing some time to wait, run the script with the *groovy.grape.report.downloads* property set to *true* to see how the download is going.
+
+	groovy -Dgroovy.grape.report.downloads=true deploy.groovy -h
