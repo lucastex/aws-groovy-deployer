@@ -20,3 +20,14 @@ The script depends on several third party libraries that will be downloaded usin
 So, the first time you run the script, you'll download all of them, causing some time to wait, run the script with the *groovy.grape.report.downloads* property set to *true* to see how the download is going.
 
 	groovy -Dgroovy.grape.report.downloads=true deploy.groovy -h
+	
+The download feedback will be shown in your console
+
+	Resolving dependency: org.codehaus.groovy.modules.http-builder#http-builder;0.5.1 {default=[default]}
+	Resolving dependency: stax#stax-api;1.0.1 {default=[default]}
+	Resolving dependency: stax#stax;1.2.0 {default=[default]}
+	Resolving dependency: org.codehaus.jackson#jackson-core-asl;1.4.3 {default=[default]}
+	Resolving dependency: javax.mail#mail;1.4.3 {default=[default]}
+	Resolving dependency: commons-httpclient#commons-httpclient;3.1 {default=[default]}
+	Resolving dependency: commons-logging#commons-logging;1.1.1 {default=[default]}
+	Resolving dependency: com.amazonaws#aws-java-sdk;1.1.9 {default=[default]}
